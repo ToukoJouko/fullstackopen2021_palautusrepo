@@ -1,0 +1,6 @@
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over selain:
+Lomake lähetetään selaimen lataaman js-tiedoston avulla.
+Näin ollen selain pysyy samalla sivulla koko ajan eikä muita HTTP-pyyntöjä tarvitse suorittaa.
+end note
