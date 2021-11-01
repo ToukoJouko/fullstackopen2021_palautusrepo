@@ -13,17 +13,12 @@ const App = () => {
   const [showDetailedButton, setShowDetailedButton] = useState(false);
   const [filteredList, setFilteredList] = useState([]);
   const [displayedIndex, setDisplayedIndex] = useState("");
-  const [weather, setWeather] = useState([]);
-  const [capital, setCapital] = useState("");
-
-  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     axios.get("https://restcountries.com/v2/all").then((response) => {
       setCountries(response.data);
     });
   });
-  //console.log(countries);
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -60,18 +55,7 @@ const App = () => {
       }
     }
   };
-  /*
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${API_KEY}`
-      )
-      .then((response) => {
-        setWeather(response.data);
-        console.log(response.data);
-      });
-  });
-*/
+
   const DetailedInfoButton = (props) => {
     return (
       <div>
@@ -96,16 +80,7 @@ const App = () => {
       </div>
     );
   };
-  /*
-  const WeatherInfo = (capital) => {
-    return (
-      <div>
-        <p>temperature: {weather.main.temp}</p>
-        <p>wind: {weather.wind.speed} m/s</p>
-      </div>
-    );
-  };
-*/
+
   function buttonFunction(get_index) {
     setShowDetailed(false);
     setDisplayed([]);

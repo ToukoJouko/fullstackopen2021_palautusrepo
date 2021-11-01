@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
-
-const API_KEY = process.env.REACT_APP_API_KEY;
+import React from "react";
 
 const DetailedInfo = (country) => {
   return (
@@ -16,12 +13,6 @@ const DetailedInfo = (country) => {
         ))}
       </ul>
       <img src={country.flag} alt="xd" width="40%" height="40%" />
-      <h2>Weather in {country.capital}</h2>
-      <div>
-        <p>temperature: {country.temperature}</p>
-        <img src={country.icon} alt="xd" width="40%" height="40%" />
-        <p>wind: {country.wind_speed} m/s</p>
-      </div>
     </div>
   );
 };
