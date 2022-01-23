@@ -41,10 +41,10 @@ const App = () => {
   const updateLikes = async (id) => {
     const blog = blogs.find((b) => b.id === id);
     const updatedBlog = { ...blog, likes: blog.likes + 1 };
-    console.log(updatedBlog);
+    //console.log(updatedBlog);
 
-    const returnedBlog = await blogService.update(id, updatedBlog);
-    setBlogs(blogs.map((blog) => (blog.id !== id ? blog : returnedBlog)));
+    await blogService.update(id, updatedBlog);
+    setBlogs(await blogService.getAll());
   };
 
   const handleLogin = async (event) => {

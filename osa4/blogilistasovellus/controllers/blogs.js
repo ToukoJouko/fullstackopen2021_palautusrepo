@@ -50,7 +50,7 @@ blogsRouter.delete("/:id", async (request, response) => {
   response.status(204).end();
 });
 
-blogsRouter.put("/api/blogs/:id", async (request, response) => {
+blogsRouter.put("/:id", async (request, response) => {
   const body = request.body;
 
   const blog = {
@@ -58,7 +58,7 @@ blogsRouter.put("/api/blogs/:id", async (request, response) => {
     author: body.author,
     url: body.url,
     likes: body.likes,
-    user: body.user,
+    user: body.user.id,
   };
 
   console.log(blog);
@@ -67,7 +67,7 @@ blogsRouter.put("/api/blogs/:id", async (request, response) => {
     new: true,
   });
 
-  response.json(updatedBlog);
+  response.json(updatedBlog.toJSON());
 });
 
 module.exports = blogsRouter;
