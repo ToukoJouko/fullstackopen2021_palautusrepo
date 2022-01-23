@@ -41,9 +41,20 @@ const App = () => {
   const updateLikes = async (id) => {
     const blog = blogs.find((b) => b.id === id);
     const updatedBlog = { ...blog, likes: blog.likes + 1 };
-    //console.log(updatedBlog);
 
     await blogService.update(id, updatedBlog);
+    let blogList = await blogService.getAll();
+
+    blogList.sort((a, b) => {
+      return a.likes - b.likes;
+    });
+    setBlogs(blogList.reverse());
+  };
+
+  const removeBlog = async (id) => {
+    const blog = blogs.find((b) => b.id === id);
+    window.confirm(`Remove blog ${blog.title} by ${blog.author}`);
+    const removedBlog = await blogService.remove(id);
     setBlogs(await blogService.getAll());
   };
 
@@ -131,6 +142,7 @@ const App = () => {
           key={blog.id}
           blog={blog}
           updateLikes={() => updateLikes(blog.id)}
+          remove={() => removeBlog(blog.id)}
         />
       ))}
     </div>
