@@ -8,6 +8,11 @@ blogsRouter.get("/", async (request, response) => {
   response.json(blogs.map((blog) => blog.toJSON()));
 });
 
+blogsRouter.get("/:id", async (request, response) => {
+  const blog = await Blog.findById(request.params.id);
+  response.json(blog.toJSON());
+});
+
 const getTokenFrom = (request) => {
   const authorization = request.get("authorization");
   if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
@@ -31,11 +36,11 @@ blogsRouter.post("/", async (request, response) => {
     author: body.author,
     url: body.url,
     likes: body.likes,
-    user: user._id,
+    user: user.id,
   });
 
   const savedBlog = await blog.save();
-  user.blogs = user.blogs.concat(savedBlog._id);
+  user.blogs = user.blogs.concat(savedBlog.id);
   await user.save();
   response.json(savedBlog.toJSON());
 });
@@ -43,6 +48,26 @@ blogsRouter.post("/", async (request, response) => {
 blogsRouter.delete("/:id", async (request, response) => {
   await Blog.findByIdAndRemove(request.params.id);
   response.status(204).end();
+});
+
+blogsRouter.put("/api/blogs/:id", async (request, response) => {
+  const body = request.body;
+
+  const blog = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes,
+    user: body.user,
+  };
+
+  console.log(blog);
+
+  const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, {
+    new: true,
+  });
+
+  response.json(updatedBlog);
 });
 
 module.exports = blogsRouter;

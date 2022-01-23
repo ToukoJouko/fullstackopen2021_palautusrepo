@@ -1,0 +1,11 @@
+PUT http://localhost:3003/api/blogs/61e98fac1c764764e4d0db36
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdWtvIiwiaWQiOiI2MWQ5ZTAzMTA5ZDRjM2YzZTUxZjliYWQiLCJpYXQiOjE2NDE2Njg3MjYsImV4cCI6MTY0MTY3MjMyNn0.qEODqJwxvJzHrBJ2Y1GjuEOd-Jc5F7a_JtqZGMK5SkE
+
+{
+    "title": "jeejee",
+    "author": "juuju",
+    "url": "joojoo",
+    "likes": 1,
+    "user": "61d9e03109d4c3f3e51f9bad"
+}
