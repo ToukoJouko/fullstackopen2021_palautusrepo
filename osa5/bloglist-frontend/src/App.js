@@ -54,7 +54,7 @@ const App = () => {
   const removeBlog = async (id) => {
     const blog = blogs.find((b) => b.id === id);
     window.confirm(`Remove blog ${blog.title} by ${blog.author}`);
-    const removedBlog = await blogService.remove(id);
+    await blogService.remove(id);
     setBlogs(await blogService.getAll());
   };
 
@@ -74,7 +74,7 @@ const App = () => {
       setPassword("");
     } catch (exception) {
       console.log(exception);
-      setNotification(`wrong username or password`);
+      setNotification("wrong username or password");
       setTimeout(() => {
         setNotification(null);
       }, 4000);
